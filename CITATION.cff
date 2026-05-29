@@ -1,11 +1,11 @@
-cff-version: 1.2.0
-title: "pycnlm: Continuous Non-Linear Manifold solvers for SAT, MaxSAT and HOBO problems"
+cff-version: 1.1.0
+title: "pycnlm: Confidence Neural Logic Machines (CNLMs) solvers for SAT, MaxSAT and HOBO problems"
 message: "If you use this software in academic work, please cite it as below."
 type: software
 authors:
-  - name: "The pycnlm contributors"
-    website: "https://github.com/your-org/pycnlm"
-repository-code: "https://github.com/your-org/pycnlm"
+  - name: "Phuong-Nam Nguyen, Son N. Tran"
+    website: "gaia.ai.vn"
+repository-code: "https://github.com/namnguyen0510/pyCNLM"
 url: "https://pycnlm.readthedocs.io"
 license: MIT
 keywords:
@@ -22,11 +22,11 @@ date-released: 2026-05-28
 
 preferred-citation:
   type: software
-  title: "pycnlm: Continuous Non-Linear Manifold solvers for SAT, MaxSAT and HOBO problems"
+  title: "pycnlm: Confidence Neural Logic Machines (CNLMs) solvers for SAT, MaxSAT and HOBO problems"
   authors:
     - name: "The pycnlm contributors"
   year: 2026
-  url: "https://github.com/your-org/pycnlm"
+  url: "https://github.com/namnguyen0510/pyCNLM"
 
 # Related publications that pycnlm builds on. When the CNLM-Langevin paper
 # is publicly archived, add a second entry here under `references:` so users
