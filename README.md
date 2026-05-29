@@ -1,14 +1,11 @@
 # pycnlm
 
 <p align="center">
-  <em>Continuous Non-Linear Manifold methods for SAT, MaxSAT, and HOBO compilation.</em>
+  <em>Confidence Neural Logic Machines Toolbox</em>
 </p>
 
 <p align="center">
-  <a href="https://github.com/your-org/pycnlm/actions/workflows/ci.yml"><img src="https://github.com/your-org/pycnlm/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://pycnlm.readthedocs.io"><img src="https://readthedocs.org/projects/pycnlm/badge/?version=latest" alt="Docs"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff"></a>
 </p>
 
 ---
