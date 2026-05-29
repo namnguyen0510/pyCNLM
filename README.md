@@ -44,49 +44,6 @@ pip install "pycnlm[complete]"
 
 Python 3.9 or newer is required.
 
-## Quick start
-
-### Solve a SAT instance with the Langevin solver
-
-```python
-import pycnlm
-
-result = pycnlm.solve_sat_file("examples/uf20-01.cnf")
-
-print(f"SAT?           {result.is_sat}")
-print(f"Best energy    {result.best_energy:.4f}")
-print(f"Assignment     {result.best_assignment[:10]}…")
-```
-
-### Quadratize a degree-4 monomial
-
-```python
-from pycnlm import HOBO
-from pycnlm.hobo import PTR_Ishikawa
-
-# E(x) = x0·x1·x2·x3
-poly = {frozenset({0, 1, 2, 3}): 1.0}
-hobo = HOBO(poly)
-
-reducer = PTR_Ishikawa()
-result  = reducer.quadratize(hobo)
-
-print(f"Original degree:    {hobo.degree}")
-print(f"Quadratic degree:   {result.quadratic.degree}")
-print(f"Auxiliaries added:  {result.quadratic.n_aux}")
-```
-
-### Reduce qubit count with symmetry detection
-
-```python
-from pycnlm import parse_cnf_file, SymmetryDetector, ClusterBasedEncoder
-
-sat = parse_cnf_file("instance.cnf")
-orbits = SymmetryDetector(sat).find_orbits()
-
-encoder = ClusterBasedEncoder(sat, orbits)
-print(f"Qubit reduction: {sat.num_vars} → {encoder.total_qubits}")
-```
 
 ### Command-line interface
 
