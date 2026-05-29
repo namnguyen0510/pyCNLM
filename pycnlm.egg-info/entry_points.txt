@@ -1,0 +1,2 @@
+[console_scripts]
+pycnlm = pycnlm.cli:main

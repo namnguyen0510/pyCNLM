@@ -1,0 +1,7 @@
+c sample_maxsat.wcnf — small weighted partial MaxSAT (new format)
+h 1 2 0
+h -1 -2 0
+3 1 0
+5 2 0
+2 -1 -2 0
+4 1 2 0

@@ -1,0 +1,17 @@
+c sample_symmetric.cnf — three exactly-one groups + cross links
+c Designed so clique/cluster encoders visibly compress qubits
+p cnf 9 14
+1 2 3 0
+-1 -2 0
+-1 -3 0
+-2 -3 0
+4 5 6 0
+-4 -5 0
+-4 -6 0
+-5 -6 0
+7 8 9 0
+-7 -8 0
+-7 -9 0
+-8 -9 0
+1 4 7 0
+2 5 8 0

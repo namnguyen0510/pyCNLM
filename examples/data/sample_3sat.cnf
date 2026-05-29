@@ -1,0 +1,11 @@
+c sample_3sat.cnf — small satisfiable 3-SAT instance for pycnlm tutorials
+c 6 variables, 8 clauses
+p cnf 6 8
+1 2 -3 0
+-1 3 4 0
+2 -4 5 0
+-2 -5 6 0
+1 -3 -6 0
+3 4 -5 0
+-1 -2 6 0
+4 5 6 0
