@@ -1,0 +1,294 @@
+# =============================================================================
+#  pycnlm — Continuous Non-Linear Manifold methods for SAT / MaxSAT
+#  PEP 517 / PEP 621 build configuration
+# =============================================================================
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# -----------------------------------------------------------------------------
+#  Project metadata (PEP 621)
+# -----------------------------------------------------------------------------
+[project]
+name = "pycnlm"
+description = "Confidence Neural Logic Machines (CNLMs) for SAT / MaxSAT solving and combinatorial optimization"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Phuong-Nam Nguyen, Son N. Tran" }]
+maintainers = [{ name = "pycnlm contributors" }]
+keywords = [
+    "sat",
+    "maxsat",
+    "satisfiability",
+    "combinatorial-optimization",
+    "qubo",
+    "hobo",
+    "quadratization",
+    "langevin",
+    "stochastic-differential-equations",
+    "quantum-annealing",
+    "d-wave",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Typing :: Typed",
+]
+
+# Version is single-sourced from pycnlm/_version.py (see [tool.setuptools.dynamic]).
+dynamic = ["version"]
+
+# Mandatory runtime dependencies — kept minimal so casual users
+# (e.g. someone only running the Langevin SAT solver) don't have to install
+# heavy GPU / annealer stacks.
+dependencies = [
+    "numpy>=1.22",
+    "matplotlib>=3.5",
+    "networkx>=2.8",
+    "typing-extensions>=4.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+# D-Wave embedding (AdaptCNLM hardware mapping).
+dwave = [
+    "dwave-networkx>=0.8",
+    "minorminer>=0.2",
+    "dimod>=0.12",
+    "dwave-neal>=0.6",
+]
+
+# Neural baselines (Langevin's neurosat_mini, etc.).
+neural = ["torch>=2.0"]
+
+# Benchmarking adapters and corpora.
+benchmark = [
+    "python-sat>=0.1.8",
+    "scikit-learn>=1.1",
+    "pandas>=1.5",
+    "cnfgen>=0.9",
+    "tqdm>=4.65",
+]
+
+# Documentation toolchain.
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+    "mkdocstrings[python]>=0.24",
+    "mkdocs-gen-files>=0.5",
+    "mkdocs-literate-nav>=0.6",
+    "mkdocs-section-index>=0.3",
+]
+
+# Developer experience.
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-xdist>=3.3",
+    "hypothesis>=6.80",
+    "ruff>=0.4",
+    "mypy>=1.7",
+    "pre-commit>=3.5",
+    "build>=1.0",
+    "twine>=4.0",
+]
+
+# Meta-extras — combine the above with one install:
+#   pip install "pycnlm[all]"        ← everything except neural (heavy GPU stack)
+#   pip install "pycnlm[complete]"   ← truly everything, neural included
+all = ["pycnlm[dwave,benchmark,docs,dev]"]
+complete = ["pycnlm[dwave,neural,benchmark,docs,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/your-org/pycnlm"
+Documentation = "https://pycnlm.readthedocs.io"
+Repository = "https://github.com/your-org/pycnlm"
+Issues = "https://github.com/your-org/pycnlm/issues"
+Changelog = "https://github.com/your-org/pycnlm/blob/main/CHANGELOG.md"
+
+# Console-script entry point — installs the ``pycnlm`` command.
+[project.scripts]
+pycnlm = "pycnlm.cli:main"
+
+# -----------------------------------------------------------------------------
+#  setuptools-specific configuration
+# -----------------------------------------------------------------------------
+[tool.setuptools.dynamic]
+version = { attr = "pycnlm._version.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pycnlm*"]
+# IMPORTANT — never ship the vendored research repositories or the heavy
+# benchmark notebook tree in the wheel.
+exclude = [
+    "pycnlm.core.LangevinCNLM.third_party*",
+    "pycnlm.core.LangevinCNLM.examples*",
+    "pycnlm.scripts*",
+    "tests*",
+    "docs*",
+]
+
+[tool.setuptools.package-data]
+# Ship the PEP 561 type-marker plus pre-computed FERQ coefficient tables
+# and the small bundled NeuroSAT-mini weight checkpoint.
+pycnlm = [
+    "py.typed",
+    "core/HOBOReducers/ferq/data/*.feather",
+    "core/HOBOReducers/ferq/data/*.json",
+    "core/LangevinCNLM/cnlm_langevin/baselines/weights/*.pt",
+]
+
+# =============================================================================
+#  Tool configurations
+# =============================================================================
+
+# ----- pytest ---------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-config",
+    "--strict-markers",
+    "--showlocals",
+    "--tb=short",
+]
+filterwarnings = [
+    "error",
+    # Allow numpy / matplotlib deprecation chatter through without failing CI.
+    "default::DeprecationWarning:numpy.*",
+    "default::DeprecationWarning:matplotlib.*",
+]
+markers = [
+    "slow: marks tests as slow (deselect with -m 'not slow')",
+    "gpu: tests requiring a CUDA-capable GPU",
+    "dwave: tests requiring the D-Wave optional stack",
+    "neural: tests requiring the neural optional stack (torch)",
+]
+
+# ----- coverage --------------------------------------------------------------
+[tool.coverage.run]
+branch = true
+source = ["pycnlm"]
+omit = [
+    "pycnlm/core/LangevinCNLM/third_party/*",
+    "pycnlm/scripts/*",
+    "*/tests/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]
+show_missing = true
+skip_covered = false
+precision = 2
+
+# ----- ruff (lint + format) --------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = [
+    "pycnlm/core/LangevinCNLM/third_party",
+    "pycnlm/scripts",
+    "docs/_build",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RUF", # ruff-specific
+]
+ignore = [
+    "E501", # line length is enforced by formatter
+    "N803", # variable name in function should be lowercase (math: L, K, …)
+    "N806", # variable in function should be lowercase (math: L, K, …)
+    "N802", # function name should be lowercase (preserve algorithm names)
+    "B008", # function call in argument default
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403", "E402"]
+"tests/*" = ["S101", "ANN", "D"]
+"pycnlm/scripts/*" = ["F401", "F403", "F405", "E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+# ----- mypy ------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.9"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+strict_equality = true
+no_implicit_optional = true
+check_untyped_defs = true
+disallow_incomplete_defs = false
+disallow_untyped_defs = false # not yet — large legacy surface
+show_error_codes = true
+exclude = [
+    "pycnlm/core/LangevinCNLM/third_party",
+    "pycnlm/scripts",
+    "build",
+    "dist",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "dwave_networkx.*",
+    "minorminer.*",
+    "dimod.*",
+    "neal.*",
+    "torch.*",
+    "torch_geometric.*",
+    "torch_scatter.*",
+    "kmeans_pytorch.*",
+    "tensorflow.*",
+    "tensorflow_addons.*",
+    "tensorflow_probability.*",
+    "pysat.*",
+    "PyMiniSolvers.*",
+    "cnfgen.*",
+    "sklearn.*",
+    "scipy.*",
+    "pandas.*",
+    "tqdm.*",
+    "matplotlib.*",
+    "networkx.*",
+]
+ignore_missing_imports = true

@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: "pycnlm: Continuous Non-Linear Manifold solvers for SAT, MaxSAT and HOBO problems"
+message: "If you use this software in academic work, please cite it as below."
+type: software
+authors:
+  - name: "The pycnlm contributors"
+    website: "https://github.com/your-org/pycnlm"
+repository-code: "https://github.com/your-org/pycnlm"
+url: "https://pycnlm.readthedocs.io"
+license: MIT
+keywords:
+  - SAT
+  - MaxSAT
+  - QUBO
+  - HOBO
+  - Langevin dynamics
+  - quantum annealing
+  - combinatorial optimization
+  - quadratization
+version: 0.1.0
+date-released: 2026-05-28
+
+preferred-citation:
+  type: software
+  title: "pycnlm: Continuous Non-Linear Manifold solvers for SAT, MaxSAT and HOBO problems"
+  authors:
+    - name: "The pycnlm contributors"
+  year: 2026
+  url: "https://github.com/your-org/pycnlm"
+
+# Related publications that pycnlm builds on. When the CNLM-Langevin paper
+# is publicly archived, add a second entry here under `references:` so users
+# can cite the underlying method as well as the implementation.
+references:
+  - type: report
+    title: "A symmetric Boolean polynomial quadratization survey"
+    authors:
+      - family-names: Dattani
+        given-names: Nike
+    year: 2019
+    identifiers:
+      - type: other
+        value: "arXiv:1901.04405"

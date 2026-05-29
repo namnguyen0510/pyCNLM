@@ -1,0 +1,41 @@
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+
+Copyright (c) 2026 pycnlm contributors
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0
+International License. You are free to:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material
+
+Under the following terms:
+
+  Attribution     — You must give appropriate credit, provide a link to the
+                    license, and indicate if changes were made. You may do so
+                    in any reasonable manner, but not in any way that suggests
+                    the licensor endorses you or your use.
+
+  NonCommercial   — You may not use the material for commercial purposes.
+
+  No additional   — You may not apply legal terms or technological measures
+  restrictions      that legally restrict others from doing anything the
+                    license permits.
+
+To view the full license text, visit:
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+THE MATERIAL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH
+THE MATERIAL OR THE USE OR OTHER DEALINGS IN THE MATERIAL.
+
+================================================================================
+Third-party code
+================================================================================
+
+The directory ``pycnlm/core/LangevinCNLM/third_party/`` vendors reference
+implementations from external research codebases used solely for benchmarking
+and reproducibility.  Each sub-directory retains its own LICENSE file and is
+distributed under the terms of its respective upstream license.  These
+sub-directories are excluded from the pip-installable wheel; consult them
+directly if you build or run the benchmark harness from source.

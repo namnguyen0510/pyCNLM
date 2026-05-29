@@ -1,0 +1,51 @@
+################################################################################
+#  MANIFEST.in — files included in the source distribution
+#  ------------------------------------------------------------------------
+#  Wheel contents are controlled separately by [tool.setuptools.*] in
+#  pyproject.toml.  This file only affects ``python -m build --sdist``.
+################################################################################
+
+# ---- Top-level metadata ------------------------------------------------------
+include LICENSE
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+include SECURITY.md
+include CITATION.cff
+include pyproject.toml
+include MANIFEST.in
+include .editorconfig
+include Makefile
+
+# ---- Package data ------------------------------------------------------------
+include pycnlm/py.typed
+recursive-include pycnlm *.py
+recursive-include pycnlm/core/HOBOReducers/ferq/data *.feather *.json
+recursive-include pycnlm/core/LangevinCNLM/cnlm_langevin/baselines/weights *.pt
+
+# ---- Tests, docs, and config -------------------------------------------------
+recursive-include tests *.py
+recursive-include tests/data *.cnf *.wcnf
+recursive-include docs *.md *.yml *.yaml *.css
+include mkdocs.yml
+include .pre-commit-config.yaml
+include .readthedocs.yaml
+include tox.ini
+
+# ---- Always exclude ----------------------------------------------------------
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.so
+global-exclude *~
+global-exclude .DS_Store
+global-exclude .git*
+
+# Vendored research codebases are large and license-incompatible with the
+# wheel — keep them in the git repo for reproducibility, but never ship them.
+prune pycnlm/core/LangevinCNLM/third_party
+prune pycnlm/core/LangevinCNLM/examples
+prune pycnlm/scripts
+prune .github
+prune build
+prune dist
