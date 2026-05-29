@@ -6,7 +6,7 @@
 
 ---
 
-`pycnlm` is a unified Python toolkit for **Continuous Non-Linear Manifold**
+`pycnlm` is a unified Python toolkit for **Confidence Neural Logic Machines**
 (CNLM) methods applied to combinatorial optimization. It bundles three
 complementary components:
 
