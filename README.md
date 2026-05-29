@@ -62,16 +62,6 @@ pycnlm solve-maxsat path/to/instance.wcnf --slow-sde
 
 Run `pycnlm --help` for the full list of sub-commands.
 
-## Documentation
-
-Full documentation, including an API reference and tutorials, lives at
-**https://pycnlm.readthedocs.io**.
-
-Within this repository:
-
-- [`docs/`](docs/) — Markdown sources rendered with MkDocs Material.
-- [`pycnlm/core/LangevinCNLM/examples/demo.ipynb`](pycnlm/core/LangevinCNLM/examples/demo.ipynb) — end-to-end notebook demo.
-- [`pycnlm/core/LangevinCNLM/README.md`](pycnlm/core/LangevinCNLM/README.md) — Langevin solver paper-style write-up.
 
 ## Project layout
 
