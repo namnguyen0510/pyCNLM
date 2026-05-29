@@ -1,4 +1,4 @@
-# pycnlm
+# pyCNLM: Confidence Neural Logic Machines solvers
 
 <p align="center">
   <em>Confidence Neural Logic Machines Toolbox</em>
