@@ -154,9 +154,6 @@ Bug reports, feature requests, and pull requests are warmly welcome.
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the development workflow,
 coding standards, and the contributor licence terms.
 
-Discussion of the underlying mathematics — Langevin annealing schedules,
-quadratization bounds, orbit detection heuristics — is best raised in the
-[Discussions](https://github.com/your-org/pycnlm/discussions) tab.
 
 ## License
 
