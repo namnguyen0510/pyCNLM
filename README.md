@@ -1,10 +1,6 @@
 # pyCNLM: Confidence Neural Logic Machines solvers
 
 <p align="center">
-  <em>Confidence Neural Logic Machines Toolbox</em>
-</p>
-
-<p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 </p>
 
